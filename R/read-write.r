@@ -18,7 +18,7 @@ read_msf <- function(path) {
                       simplifyMatrix = FALSE)
 
   obj <- new_api(j, path)
-  attr(j, "local_path") <- path
+  attr(obj, "local_path") <- path
 
-  j
+  obj
 }
