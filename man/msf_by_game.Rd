@@ -3,11 +3,17 @@
 \name{msf_by_game}
 \alias{msf_by_game}
 \alias{game_lineup}
+\alias{game_boxscore}
+\alias{game_pbp}
 \title{MySportsFeeds API calls by game}
 \usage{
 msf_by_game(feed, sport, gameid, season = "current", delay = 1)
 
 game_lineup(sport, gameid, ...)
+
+game_boxscore(sport, gameid, ...)
+
+game_pbp(sport, gameid, ...)
 }
 \arguments{
 \item{feed}{feed to request}
@@ -30,6 +36,10 @@ think your queries will reach the throttle limits.
 \section{Functions}{
 \itemize{
 \item \code{game_lineup}: Expected and Actual starting lineup for both teams of a game.
+
+\item \code{game_boxscore}: A boxscore for a game including game details and team/player stats.
+
+\item \code{game_pbp}: All play-by-play events for a game with full details.
 }}
 
 \examples{
