@@ -9,6 +9,7 @@ write_msf <- function(j, datadir = ".") {
   }
 
   jsonlite::write_json(j, path)
+  path
 }
 
 #' Read msf api objects from disk
