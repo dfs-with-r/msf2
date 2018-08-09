@@ -3,14 +3,17 @@ parse_daily_dfs <- function(j, site = c("draftkings", "fanduel")) {
   site <- match.arg(site)
   site_names<- tolower(purrr::map_chr(j$dfsEntries, "dfsSource"))
   index <- which(site == site_names)
+
+  if (length(index) == 0) return(NULL)
+
   dfsRows <- j$dfsEntries[[index]]$dfsRows
 
   # players
   players <- purrr::map(dfsRows, "player")
-  player_id <- purrr::map_int(players, "id")
-  player_position <- purrr::map_chr(players, "position")
-  player_fname <- purrr::map_chr(players, "firstName")
-  player_lname <- purrr::map_chr(players, "lastName")
+  player_id <- purrr::map_int(players, "id", .default = NA_integer_)
+  player_position <- purrr::map_chr(players, "position", .default = NA_character_)
+  player_fname <- purrr::map_chr(players, "firstName", .default = NA_character_)
+  player_lname <- purrr::map_chr(players, "lastName", .default = NA_character_)
   player_name <- paste(player_fname, player_lname)
 
   # teams
@@ -25,7 +28,7 @@ parse_daily_dfs <- function(j, site = c("draftkings", "fanduel")) {
   game_time <- msf_time(game_time)
 
   # dfs
-  dfs_id <- purrr::map_int(dfsRows, "dfsSourceId")
+  dfs_id <- purrr::map_int(dfsRows, "dfsSourceId", .default = NA_integer_)
   dfs_salary <- purrr::map_int(dfsRows, "salary")
   dfs_fpts <- purrr::map_dbl(dfsRows, "fantasyPoints", .default = NA_real_)
 
