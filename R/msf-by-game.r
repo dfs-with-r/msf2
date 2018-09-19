@@ -40,11 +40,11 @@ game_lineup <- function(sport, gameid, ...) {
 #' @describeIn msf_by_game A boxscore for a game including game details and team/player stats.
 #' @export
 game_boxscore <- function(sport, gameid, ...) {
-  msf_by_game("boxscore", sport, gameid)
+  msf_by_game("boxscore", sport, gameid, ...)
 }
 
 #' @describeIn msf_by_game All play-by-play events for a game with full details.
 #' @export
 game_pbp <- function(sport, gameid, ...) {
-  msf_by_game("playbyplay", sport, gameid)
+  msf_by_game("playbyplay", sport, gameid, ...)
 }
