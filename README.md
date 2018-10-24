@@ -17,7 +17,7 @@ devtools::install_github("dfs-with-r/msf2")
 ```
 
 ## Usage
-To start, make sure you have set the following environment variable set on your computer. You need to sign up for an account at [MySportsFeeds](https://www.mysportsfeeds.com) then create an API key. Once you have this key, use the `add_key()` in this package to help show you what to do with it.
+To start, make sure you have set the following environment variable set on your computer. You need to sign up for an account at [MySportsFeeds](https://www.mysportsfeeds.com) then create an API key. Once you have this key, use the `add_key()` in this package to help show you what to do with it. For example, if your key was *xxxyyyzzz* you would do the following:
 
 ```R
 add_key("xxxyyyzzz")
