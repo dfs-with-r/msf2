@@ -25,12 +25,13 @@ msf_by_date <- function(feed, sport, date = Sys.Date(), season = "current", dela
     result <- purrr::map(path, ~ delay_by(delay, msf_api)(.x))
     result <- purrr::map2(result, path, function(r, p) {attr(r, "local_path") <- path; r})
     names(result) <- date
+    result <- lapply(result, msf_class, feed)
   } else {
     result <- msf_api(path)
     attr(result, "local_path") <- path
+    result <- msf_class(result, feed)
   }
 
-  result <- msf_class(result, feed)
   result
 }
 

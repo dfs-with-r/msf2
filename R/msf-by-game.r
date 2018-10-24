@@ -23,12 +23,13 @@ msf_by_game <- function(feed, sport, gameid, season = "current", delay = 1) {
     result <- purrr::map(path, ~ delay_by(delay, msf_api)(.x))
     result <- purrr::map2(result, path, function(r, p) {attr(r, "local_path") <- p; r})
     names(result) <- gameid
+    result <- lapply(result, msf_class, feed)
   } else {
     result <- msf_api(path)
     attr(result, "local_path") <- path
+    result <- msf_class(result, feed)
   }
 
-  result <- msf_class(result, feed)
   result
 }
 
