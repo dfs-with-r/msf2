@@ -7,6 +7,8 @@
 all_players(sport, date = Sys.Date(), ...)
 }
 \arguments{
+\item{sport}{mlb | nfl | nba | etc..}
+
 \item{date}{given date}
 
 \item{...}{optional query parameters}

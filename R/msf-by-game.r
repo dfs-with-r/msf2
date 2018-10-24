@@ -28,6 +28,7 @@ msf_by_game <- function(feed, sport, gameid, season = "current", delay = 1) {
     attr(result, "local_path") <- path
   }
 
+  result <- msf_class(result, feed)
   result
 }
 

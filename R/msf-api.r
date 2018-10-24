@@ -66,9 +66,25 @@ print.msf_api <- function(x, ...) {
 #' @param key API key provided by MySportsFeeds
 #' @export
 add_key <- function(key) {
+  if (missing(key)) {
+    stop("You forgot to provide your API key.", call. = FALSE)
+  }
   msg <- sprintf("MSF_API=%s", key)
 
-  usethis:::todo("Add this line to your .Renviron file:")
-  usethis:::code_block(msg, copy = FALSE)
+  bullet <- crayon::red(clisymbols::symbol$bullet)
+  code_block <- crayon::make_style("darkgrey")
+  cat(bullet, "Add this line to your .Renviron file:", code_block(msg), "\n")
   usethis::edit_r_environ()
+}
+
+
+#' Tidy MSF json to a dataframe
+#' @param j object to tidy
+#' @param ... additional arguments
+#' @export
+tidy <- function(j, ...) UseMethod("tidy", j)
+
+tidy.default <- function(j, ...) {
+  msg <- sprintf("Not implemented for type %s yet", class(j)[1])
+  stop(msg, call. = FALSE)
 }

@@ -6,6 +6,10 @@
 \usage{
 msf_time(x)
 }
-\description{
-Converts msf formatted time to POSIXct
+\arguments{
+\item{x}{character string}
 }
+\description{
+MSF datetimes have a specific format. This will parse them to R datetimes.
+}
+\keyword{internal}

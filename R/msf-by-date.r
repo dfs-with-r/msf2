@@ -30,7 +30,7 @@ msf_by_date <- function(feed, sport, date = Sys.Date(), season = "current", dela
     attr(result, "local_path") <- path
   }
 
-  class(result) <- c(feed, class(result))
+  result <- msf_class(result, feed)
   result
 }
 

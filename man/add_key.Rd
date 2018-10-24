@@ -11,7 +11,7 @@ add_key(key)
 }
 \description{
 The functions in this package will look for your MySportsFeeds API key
-in a special environment variable \code{MSF}. This function opens the .Renviron
+in a special environment variable \code{MSF_API}. This function opens the .Renviron
 file and tells what line you should add. Just copy-and-paste the line into the file,
 save it, and restart R.
 }

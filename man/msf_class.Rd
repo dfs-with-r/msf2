@@ -6,6 +6,12 @@
 \usage{
 msf_class(obj, newclass)
 }
+\arguments{
+\item{obj}{object to modify}
+
+\item{newclass}{new class will be msf_newclass}
+}
 \description{
 Adds msf_* type to object class
 }
+\keyword{internal}

@@ -6,6 +6,12 @@
 \usage{
 delay_by(delay, f)
 }
+\arguments{
+\item{delay}{number of seconds to delay function by}
+
+\item{f}{function}
+}
 \description{
 Delays function result
 }
+\keyword{internal}
