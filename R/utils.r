@@ -10,6 +10,12 @@ msf_time <- function(x) {
   as.POSIXct(new_time, "%Y-%m-%d %H:%M:%S", tz = "UTC")
 }
 
+#' Adds msf_* type to object class
+msf_class <- function(obj, newclass) {
+  class(obj) <- c(paste0("msf_", newclass), class(obj))
+  obj
+}
+
 #' Delays function result
 delay_by <- function(delay, f) {
   function(...) {

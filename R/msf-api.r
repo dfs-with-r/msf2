@@ -43,7 +43,7 @@ msf_api <- function(path, query = NULL) {
 }
 
 new_api <- function(json, path) {
-  class(json) <- c("msf_api", class(json))
+  json <- msf_class(json, "api")
   attr(json, "path") <- path
 
   json
