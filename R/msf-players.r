@@ -1,5 +1,6 @@
 #' Lists all players for a league on a given date, with full bio and other details.
 #' @param date given date
+#' @param sport mlb | nfl | nba | etc..
 #' @param ... optional query parameters
 #'
 #' @examples
@@ -16,5 +17,6 @@ all_players <- function(sport, date = Sys.Date(), ...) {
   result <- msf_api(path, query)
   attr(result, "local_path") <- sprintf("%s/players/%s.json", sport, format(date, "%Y%m%d"))
 
+  result <- msf_class(result, "players")
   result
 }

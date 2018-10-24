@@ -6,6 +6,11 @@
 \usage{
 write_msf(j, datadir = ".")
 }
+\arguments{
+\item{j}{a list representing a json object}
+
+\item{datadir}{base directory to write files into}
+}
 \description{
 Write msf api objects to disk
 }

@@ -1,5 +1,10 @@
+#' Tidy DFS
+#' Converts daily and seasonal dfs data to a dataframe
+#' @param j msf object
+#' @param site DFS site to get data for
+#' @param ... additional arguments. currently unused
 #' @export
-parse_daily_dfs <- function(j, site = c("draftkings", "fanduel")) {
+tidy.msf_dfs <- function(j, site = c("draftkings", "fanduel"), ...) {
   site <- match.arg(site)
   site_names<- tolower(purrr::map_chr(j$dfsEntries, "dfsSource"))
   index <- which(site == site_names)
@@ -32,7 +37,7 @@ parse_daily_dfs <- function(j, site = c("draftkings", "fanduel")) {
   dfs_salary <- purrr::map_int(dfsRows, "salary")
   dfs_fpts <- purrr::map_dbl(dfsRows, "fantasyPoints", .default = NA_real_)
 
-  data.frame(
+  tibble::tibble(
     game_id = as.character(game_id),
     game_time = game_time,
     player_id = as.character(player_id),
@@ -42,12 +47,14 @@ parse_daily_dfs <- function(j, site = c("draftkings", "fanduel")) {
     team = team_name,
     dfs_id = as.character(dfs_id),
     dfs_salary = dfs_salary,
-    dfs_fpts = dfs_fpts,
-    stringsAsFactors = FALSE)
+    dfs_fpts = dfs_fpts)
 }
 
+#' Tidy Daily Games
+#' @param j msf object
+#' @param ... additional arguments. currently unused
 #' @export
-parse_daily_games <- function(j) {
+tidy.msf_games <- function(j, ...) {
   games <- j[["games"]]
   schedules <- purrr::map(games, "schedule")
   scores <- purrr::map(games, "score")
@@ -66,7 +73,7 @@ parse_daily_games <- function(j) {
   away_score <- purrr::map_int(scores, "awayScoreTotal")
   home_score <- purrr::map_int(scores, "homeScoreTotal")
 
-  data.frame(
+  tibble::tibble(
     game_id = as.character(game_id),
     game_time = game_time,
     game_status = game_status,
@@ -75,7 +82,6 @@ parse_daily_games <- function(j) {
     away_score = away_score,
     home_id = as.character(home_id),
     home_team = home_team,
-    home_score = home_score,
-    stringsAsFactors = FALSE
+    home_score = home_score
   )
 }

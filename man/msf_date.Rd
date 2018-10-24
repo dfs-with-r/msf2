@@ -6,6 +6,10 @@
 \usage{
 msf_date(date)
 }
-\description{
-Converts a Date to msf formatted date
+\arguments{
+\item{date}{an R date}
 }
+\description{
+MSF dates have a specific format. This will parse R dates to MSF format.
+}
+\keyword{internal}

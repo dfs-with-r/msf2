@@ -6,7 +6,8 @@
 \alias{daily_games}
 \title{MySportsFeeds API calls by date}
 \usage{
-msf_by_date(feed, sport, date = Sys.Date(), season = "current", delay = 1)
+msf_by_date(feed, sport, date = Sys.Date(), season = "current",
+  delay = 1)
 
 daily_dfs(sport, ...)
 

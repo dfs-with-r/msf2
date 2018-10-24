@@ -6,6 +6,9 @@
 \usage{
 read_msf(path)
 }
+\arguments{
+\item{path}{filepath where data is located}
+}
 \description{
 Read msf api objects from disk
 }

@@ -43,7 +43,7 @@ msf_api <- function(path, query = NULL) {
 }
 
 new_api <- function(json, path) {
-  class(json) <- c("msf_api", class(json))
+  json <- msf_class(json, "api")
   attr(json, "path") <- path
 
   json
@@ -54,4 +54,37 @@ print.msf_api <- function(x, ...) {
   cat("<MySportsFeeds ", attr(x, "path"), ">\n", sep = "")
   utils::str(x, 2, give.attr = FALSE)
   invisible(x)
+}
+
+#' Add MySportsFeeds API key to R environment file
+#'
+#' The functions in this package will look for your MySportsFeeds API key
+#' in a special environment variable \code{MSF_API}. This function opens the .Renviron
+#' file and tells what line you should add. Just copy-and-paste the line into the file,
+#' save it, and restart R.
+#'
+#' @param key API key provided by MySportsFeeds
+#' @export
+add_key <- function(key) {
+  if (missing(key)) {
+    stop("You forgot to provide your API key.", call. = FALSE)
+  }
+  msg <- sprintf("MSF_API=%s", key)
+
+  bullet <- crayon::red(clisymbols::symbol$bullet)
+  code_block <- crayon::make_style("darkgrey")
+  cat(bullet, "Add this line to your .Renviron file:", code_block(msg), "\n")
+  usethis::edit_r_environ()
+}
+
+
+#' Tidy MSF json to a dataframe
+#' @param j object to tidy
+#' @param ... additional arguments
+#' @export
+tidy <- function(j, ...) UseMethod("tidy", j)
+
+tidy.default <- function(j, ...) {
+  msg <- sprintf("Not implemented for type %s yet", class(j)[1])
+  stop(msg, call. = FALSE)
 }
