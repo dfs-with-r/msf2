@@ -55,3 +55,20 @@ print.msf_api <- function(x, ...) {
   utils::str(x, 2, give.attr = FALSE)
   invisible(x)
 }
+
+#' Add MySportsFeeds API key to R environment file
+#'
+#' The functions in this package will look for your MySportsFeeds API key
+#' in a special environment variable \code{MSF_API}. This function opens the .Renviron
+#' file and tells what line you should add. Just copy-and-paste the line into the file,
+#' save it, and restart R.
+#'
+#' @param key API key provided by MySportsFeeds
+#' @export
+add_key <- function(key) {
+  msg <- sprintf("MSF_API=%s", key)
+
+  usethis:::todo("Add this line to your .Renviron file:")
+  usethis:::code_block(msg, copy = FALSE)
+  usethis::edit_r_environ()
+}
