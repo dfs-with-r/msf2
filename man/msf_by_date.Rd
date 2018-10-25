@@ -22,8 +22,6 @@ daily_games(sport, date = Sys.Date(), ...)
 \item{delay}{number of seconds between queries}
 
 \item{...}{additional query parameters}
-
-\item{season}{ex. 2017-regular | current}
 }
 \description{
 If you provide multiple dates it will execute with a delay between each query.

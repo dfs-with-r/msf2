@@ -6,7 +6,6 @@
 #'
 #' @param feed feed to request
 #' @param sport mlb | nfl | nba | etc..
-#' @param season ex. 2017-regular | current
 #' @param date date, ex. as.Date("2017-05-08")
 #' @param delay number of seconds between queries
 #' @param ... additional query parameters
