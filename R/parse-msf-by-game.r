@@ -72,9 +72,13 @@ tidy.msf_boxscore <- function(j, ...) {
   # combine home and away
   stats <- do.call(rbind, list(home_stats, away_stats))
 
-  # add game_id
-  stats[["game_id"]] <- as.character(j[[c("game", "id")]])
-  to_front <- c("game_id", "team_id", "team")
+  # add game id and time
+  game_id <- j[["game"]][["id"]]
+  game_time <- msf_time(j[["game"]][["startTime"]])
+  stats[["game_id"]] <- as.character(game_id)
+  stats[["game_time"]] <- game_time
+
+  to_front <- c("game_id", "game_time", "team_id", "team")
   stats <- stats[c(to_front, setdiff(colnames(stats), to_front))]
 
   stats
