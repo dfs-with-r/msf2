@@ -6,11 +6,12 @@
 \alias{daily_games}
 \title{MySportsFeeds API calls by date}
 \usage{
-msf_by_date(feed, sport, date = Sys.Date(), delay = 1, ...)
+msf_by_date(feed, sport, date = Sys.Date(), season = "current",
+  delay = 1, ...)
 
-daily_dfs(sport, date = Sys.Date(), ...)
+daily_dfs(sport, date = Sys.Date(), season = "current", ...)
 
-daily_games(sport, date = Sys.Date(), ...)
+daily_games(sport, date = Sys.Date(), season = "current", ...)
 }
 \arguments{
 \item{feed}{feed to request}
@@ -18,6 +19,8 @@ daily_games(sport, date = Sys.Date(), ...)
 \item{sport}{mlb | nfl | nba | etc..}
 
 \item{date}{date, ex. as.Date("2017-05-08")}
+
+\item{season}{season identifier, ex. "2017-2018-regular"}
 
 \item{delay}{number of seconds between queries}
 

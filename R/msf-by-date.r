@@ -7,6 +7,7 @@
 #' @param feed feed to request
 #' @param sport mlb | nfl | nba | etc..
 #' @param date date, ex. as.Date("2017-05-08")
+#' @param season season identifier, ex. "2017-2018-regular"
 #' @param delay number of seconds between queries
 #' @param ... additional query parameters
 #'
@@ -14,8 +15,7 @@
 #' \dontrun{
 #' j <- daily_dfs("mlb", date = as.Date("2018-07-15"))
 #' }
-msf_by_date <- function(feed, sport, date = Sys.Date(), delay = 1, ...) {
-  season <- unique(date_to_season(date, sport))
+msf_by_date <- function(feed, sport, date = Sys.Date(), season = "current",  delay = 1, ...) {
   stopifnot(length(feed) == 1L, length(sport) == 1L, length(season) == 1L)
 
   date <- msf_date(date)
@@ -44,12 +44,12 @@ msf_by_date <- function(feed, sport, date = Sys.Date(), delay = 1, ...) {
 
 #' @describeIn msf_by_date A list of players, along with their DFS salaries and actual fantasy points.
 #' @export
-daily_dfs <- function(sport, date = Sys.Date(), ...) {
-  msf_by_date("dfs", sport, date, ...)
+daily_dfs <- function(sport, date = Sys.Date(), season = "current", ...) {
+  msf_by_date("dfs", sport, date, season, ...)
 }
 
 #' @describeIn msf_by_date All games on a given date including schedule, status and scores.
 #' @export
-daily_games <- function(sport, date = Sys.Date(), ...) {
-  msf_by_date("games", sport, date, ...)
+daily_games <- function(sport, date = Sys.Date(), season = "current", ...) {
+  msf_by_date("games", sport, date, season, ...)
 }
