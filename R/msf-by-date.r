@@ -15,7 +15,7 @@
 #' j <- daily_dfs("mlb", date = as.Date("2018-07-15"))
 #' }
 msf_by_date <- function(feed, sport, date = Sys.Date(), delay = 1, ...) {
-  season <- unique(date_to_season(date))
+  season <- unique(date_to_season(date, sport))
   stopifnot(length(feed) == 1L, length(sport) == 1L, length(season) == 1L)
 
   date <- msf_date(date)
