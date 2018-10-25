@@ -7,13 +7,13 @@
 \alias{game_pbp}
 \title{MySportsFeeds API calls by game}
 \usage{
-msf_by_game(feed, sport, gameid, season = "current", delay = 1)
+msf_by_game(feed, sport, gameid, season = "current", delay = 1, ...)
 
-game_lineup(sport, gameid, ...)
+game_lineup(sport, gameid, season = "current", ...)
 
-game_boxscore(sport, gameid, ...)
+game_boxscore(sport, gameid, season = "current", ...)
 
-game_pbp(sport, gameid, ...)
+game_pbp(sport, gameid, season = "current", ...)
 }
 \arguments{
 \item{feed}{feed to request}
@@ -26,7 +26,7 @@ game_pbp(sport, gameid, ...)
 
 \item{delay}{number of seconds between queries}
 
-\item{...}{additional parameters passed to \code{msf_by_game} such as season or delay}
+\item{...}{additional query parameters}
 }
 \description{
 If you provide multiple gameids it will execute with a delay between each query.
@@ -44,6 +44,6 @@ think your queries will reach the throttle limits.
 
 \examples{
 \dontrun{
-j <- game_lineup("mlb", "43333", season = "2017-regular")
+j <- game_boxscore("nba", "47627", playerstats = c("ftMade", "ftAtt"))
 }
 }

@@ -8,7 +8,7 @@
 #' @param sport mlb | nfl | nba | etc..
 #' @param season ex. 2017-regular | current
 #' @param delay number of seconds between queries
-#' @param ... additional arguments to be used as query parameters
+#' @param ... additional query parameters
 #'
 #' @examples
 #' \dontrun{
@@ -18,8 +18,11 @@ msf_by_season <- function(feed, sport, season = "current", delay = 1,  ...) {
   stopifnot(length(feed) == 1L, length(sport) == 1L)
 
   path <- sprintf("%s/%s/%s.json", sport, season, feed)
-  query <- list(...)
-  if (length(query) == 0) {
+
+  if (!missing(...)) {
+    query <- list(...)
+    query <- lapply(query, paste, collapse = ",")
+  } else {
     query <- NULL
   }
 

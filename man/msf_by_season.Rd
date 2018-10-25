@@ -18,7 +18,7 @@ seasonal_dfs(sport, season, ...)
 
 \item{delay}{number of seconds between queries}
 
-\item{...}{additional arguments to be used as query parameters}
+\item{...}{additional query parameters}
 }
 \description{
 If you provide multiple seasons it will execute with a delay between each query.

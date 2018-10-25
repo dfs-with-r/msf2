@@ -6,12 +6,11 @@
 \alias{daily_games}
 \title{MySportsFeeds API calls by date}
 \usage{
-msf_by_date(feed, sport, date = Sys.Date(), season = "current",
-  delay = 1)
+msf_by_date(feed, sport, date = Sys.Date(), delay = 1, ...)
 
-daily_dfs(sport, ...)
+daily_dfs(sport, date = Sys.Date(), ...)
 
-daily_games(sport, ...)
+daily_games(sport, date = Sys.Date(), ...)
 }
 \arguments{
 \item{feed}{feed to request}
@@ -20,11 +19,11 @@ daily_games(sport, ...)
 
 \item{date}{date, ex. as.Date("2017-05-08")}
 
-\item{season}{ex. 2017-regular | current}
-
 \item{delay}{number of seconds between queries}
 
-\item{...}{additional parameters passed to \code{msf_by_date} such as date or season}
+\item{...}{additional query parameters}
+
+\item{season}{ex. 2017-regular | current}
 }
 \description{
 If you provide multiple dates it will execute with a delay between each query.
@@ -40,6 +39,6 @@ think your queries will reach the throttle limits.
 
 \examples{
 \dontrun{
-j <- daily_dfs("mlb", "2018-regular", date = as.Date("2018-07-15"))
+j <- daily_dfs("mlb", date = as.Date("2018-07-15"))
 }
 }

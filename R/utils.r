@@ -41,3 +41,24 @@ delay_by <- function(delay, f) {
     res
   }
 }
+
+#' @keywords internal
+date_to_season <- function(dates, sport = c("nba", "nfl", "nhl", "mlb"),
+                           type = c("regular", "playoff")) {
+
+  sport <- match.arg(sport)
+  type <- match.arg(type)
+  years <- as.integer(format(dates, "%Y"))
+
+  if (sport %in% c("nba", "nhl")) {
+    months <- as.integer(format(dates, "%m"))
+    ifelse(months >= 9,
+           paste(years, years + 1, type, sep = "-"),
+           paste(years - 1, years, type, sep = "-")
+    )
+  } else {
+    paste(years, type, sep = "-")
+  }
+
+}
+

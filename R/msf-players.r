@@ -5,14 +5,15 @@
 #'
 #' @examples
 #' \dontrun{
-#' j <- all_players("mlb", team = "bos", rosterstatus = "assigned-to-roster,assigned-to-injury-list")
+#' j <- all_players("mlb", team = "bos", rosterstatus = c("assigned-to-roster", "assigned-to-injury-list"))
 #' }
 #' @export
 all_players <- function(sport, date = Sys.Date(), ...) {
   stopifnot(length(date) == 1L, length(sport) == 1L)
   path <- sprintf("%s/players.json", sport)
 
-  query <- list(date  = msf_date(date), ...)
+  query <- list(date = msf_date(date), ...)
+  query <- lapply(query, paste, collapse = ",")
 
   result <- msf_api(path, query)
   attr(result, "local_path") <- sprintf("%s/players/%s.json", sport, format(date, "%Y%m%d"))

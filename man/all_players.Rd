@@ -18,6 +18,6 @@ Lists all players for a league on a given date, with full bio and other details.
 }
 \examples{
 \dontrun{
-j <- all_players("mlb", team = "bos", rosterstatus = "assigned-to-roster,assigned-to-injury-list")
+j <- all_players("mlb", team = "bos", rosterstatus = c("assigned-to-roster", "assigned-to-injury-list"))
 }
 }
