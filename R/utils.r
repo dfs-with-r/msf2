@@ -22,7 +22,7 @@ msf_time <- function(x) {
 #'
 #' @param obj object to modify
 #' @param newclass new class will be msf_newclass
-#' export
+#' @export
 msf_class <- function(obj, newclass) {
   class(obj) <- c(paste0("msf_", newclass), class(obj))
   obj
