@@ -53,3 +53,9 @@ daily_dfs <- function(sport, date = Sys.Date(), season = "current", ...) {
 daily_games <- function(sport, date = Sys.Date(), season = "current", ...) {
   msf_by_date("games", sport, date, season, ...)
 }
+
+#' @describeIn msf_by_date All Game Lines (Odds) entries for a given date including line history.
+#' @export
+daily_odds <- function(sport, date = Sys.Date(), season = "current", ...) {
+  msf_by_date("odds_gamelines", sport, date, season, ...)
+}

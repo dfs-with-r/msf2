@@ -4,6 +4,7 @@
 \alias{msf_by_date}
 \alias{daily_dfs}
 \alias{daily_games}
+\alias{daily_odds}
 \title{MySportsFeeds API calls by date}
 \usage{
 msf_by_date(feed, sport, date = Sys.Date(), season = "current",
@@ -12,6 +13,8 @@ msf_by_date(feed, sport, date = Sys.Date(), season = "current",
 daily_dfs(sport, date = Sys.Date(), season = "current", ...)
 
 daily_games(sport, date = Sys.Date(), season = "current", ...)
+
+daily_odds(sport, date = Sys.Date(), season = "current", ...)
 }
 \arguments{
 \item{feed}{feed to request}
@@ -36,6 +39,8 @@ think your queries will reach the throttle limits.
 \item \code{daily_dfs}: A list of players, along with their DFS salaries and actual fantasy points.
 
 \item \code{daily_games}: All games on a given date including schedule, status and scores.
+
+\item \code{daily_odds}: All Game Lines (Odds) entries for a given date including line history.
 }}
 
 \examples{
