@@ -70,8 +70,8 @@ tidy.msf_games <- function(j, ...) {
   home_team <- purrr::map_chr(schedules, c("homeTeam", "abbreviation"))
 
   # scores
-  away_score <- purrr::map_int(scores, "awayScoreTotal")
-  home_score <- purrr::map_int(scores, "homeScoreTotal")
+  away_score <- purrr::map_int(scores, "awayScoreTotal", .default = NA_integer_)
+  home_score <- purrr::map_int(scores, "homeScoreTotal", .default = NA_integer_)
 
   tibble::tibble(
     game_id = as.character(game_id),

@@ -3,11 +3,14 @@
 \name{msf_by_season}
 \alias{msf_by_season}
 \alias{seasonal_dfs}
+\alias{seasonal_games}
 \title{MySportsFeeds API calls by season}
 \usage{
 msf_by_season(feed, sport, season = "current", delay = 1, ...)
 
 seasonal_dfs(sport, season, ...)
+
+seasonal_games(sport, season = "current", ...)
 }
 \arguments{
 \item{feed}{feed to request}
@@ -28,6 +31,8 @@ think your queries will reach the throttle limits.
 \section{Functions}{
 \itemize{
 \item \code{seasonal_dfs}: All DFS entries for a season including salaries and fantasy points.
+
+\item \code{seasonal_games}: All games for a season including schedule, status and scores.
 }}
 
 \examples{

@@ -46,3 +46,9 @@ seasonal_dfs <- function(sport, season, ...) {
   msf_by_season("dfs", sport, season, ...)
 }
 
+#' @describeIn msf_by_season All games for a season including schedule, status and scores.
+#' @export
+seasonal_games <- function(sport, season = "current", ...) {
+  msf_by_season("games", sport, season, ...)
+}
+
