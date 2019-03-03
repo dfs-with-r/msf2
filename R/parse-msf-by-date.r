@@ -33,7 +33,7 @@ tidy.msf_dfs <- function(j, site = c("draftkings", "fanduel"), ...) {
   game_time <- msf_time(game_time)
 
   # dfs
-  dfs_id <- purrr::map_int(dfsRows, "dfsSourceId", .default = NA_integer_)
+  dfs_id <- purrr::map_chr(dfsRows, "dfsSourceId", .default = NA_integer_)
   dfs_salary <- purrr::map_int(dfsRows, "salary")
   dfs_fpts <- purrr::map_dbl(dfsRows, "fantasyPoints", .default = NA_real_)
 
