@@ -85,3 +85,59 @@ tidy.msf_games <- function(j, ...) {
     home_score = home_score
   )
 }
+
+#' Tidy Daily Odds
+#' @param j msf object
+#' @param ... additional arguments. currently unused
+#' @export
+tidy.msf_odds_gamelines  <- function(j, ...) {
+  gamelines <- j$gameLines
+
+  # game
+  games <- purrr::map(gamelines, "game")
+  game_id <- purrr::map_int(games, "id", .default = NA_integer_)
+  game_time <- purrr::map_chr(games, "startTime", .default = NA_character_)
+  game_time <- msf_time(game_time)
+
+  # lines
+  lines <- purrr::map(gamelines, "lines")
+  lines <- purrr::map(lines, ~purrr::map(.x, tidy_lines))
+
+  # results
+  tibble::tibble(
+    game_id = as.character(game_id),
+    game_time = game_time,
+    lines = lines
+  )
+}
+
+#' Tidy MoneyLines
+#'
+#' Currently only exracts moneylines, not point spreads or over/unders.
+#' @param j json data
+#' @keywords internal
+tidy_lines <- function(j) {
+  # source
+  source_name <- j$source$name
+
+  # moneyline
+  to_keep <- purrr::map_lgl(j$moneyLines, ~ .x$moneyLine$gameSegment == "FULL", .default = FALSE)
+  ml <- j$moneyLines[to_keep]
+
+  # time odds were issued
+  time_line <- purrr::map_chr(ml, "asOfTime", .default = NA_character_)
+  time_line <- msf_time(time_line)
+
+  # home/away odds
+  moneylines <- purrr::map(ml, "moneyLine")
+  away_line <- purrr::map_int(moneylines, c("awayLine", "american"), .default = NA_integer_)
+  home_line <- purrr::map_int(moneylines, c("homeLine", "american"), .default = NA_integer_)
+
+
+  tibble::tibble(
+    source = source_name,
+    time = time_line,
+    away_line = away_line,
+    home_line = home_line
+  )
+}
